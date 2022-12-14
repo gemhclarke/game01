@@ -8,9 +8,8 @@ public class Dialogue : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
     public string[] lines;
+   
     public float textSpeed;
-    public AudioClip sound;
-
 
     private int index;
 
@@ -49,8 +48,9 @@ public class Dialogue : MonoBehaviour
     {
         foreach (char c in lines[index].ToCharArray())
         {
+            
             // play a short audio clip here
-            //SoundManager.PlaySound
+            FindObjectOfType<AudioManager>().Play("TypingSound");
             
             textComponent.text += c;
             yield return new WaitForSeconds(textSpeed);
