@@ -10,8 +10,14 @@ public class Dialogue : MonoBehaviour
     public string[] lines;
    
     public float textSpeed;
+    
+    [HideInInspector]
+    public float textSpeedDelay;
 
     private int index;
+
+    private char spc = ' ';
+    private char comma = ',';
 
     // Start is called before the first frame update
     void Start()
@@ -46,14 +52,25 @@ public class Dialogue : MonoBehaviour
 
     IEnumerator TypeLine()
     {
+        // Loop through each line
         foreach (char c in lines[index].ToCharArray())
         {
-            
-            // play a short audio clip here
-            FindObjectOfType<AudioManager>().Play("TypingSound");
-            
+            // We start with a textSpeedDelay of 0 for normal letters
+            textSpeedDelay = 0.0f;
+
+            // play a short audio clip here if the c is not a space            
+            if (!spc.Equals(c)){
+                FindObjectOfType<AudioManager>().Play("TypingSound");
+            }
+
+            // If the letter is a comma, add a delay
+            if(comma.Equals(c)){
+                textSpeedDelay = textSpeed*10;
+            }
+
+            // Appends each char in turn to the textComponent of the dialog box
             textComponent.text += c;
-            yield return new WaitForSeconds(textSpeed);
+            yield return new WaitForSeconds(textSpeed+textSpeedDelay);
         }
     }
 
