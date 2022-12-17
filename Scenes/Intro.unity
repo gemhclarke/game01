@@ -429,6 +429,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -507,7 +508,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 250824117}
   lines:
-  - this is a test, with more text
+  - this is a test
   - this is also a test
   - test test test
   textSpeed: 0.07
@@ -580,7 +581,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -732,10 +732,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - clip: {fileID: 8300000, guid: cb654a44ba98a48cd95a827246136c38, type: 3}
+  - clip: {fileID: 8300000, guid: affccc71d38284988b35a680c7763a11, type: 3}
     name: TypingSound
     volume: 0.48
-    pitch: 1.68
+    pitch: 1.5
     source: {fileID: 0}
 --- !u!4 &1792982839
 Transform:
