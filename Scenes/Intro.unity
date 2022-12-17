@@ -507,10 +507,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 250824117}
   lines:
-  - this is a test
+  - this is a test, with more text
   - this is also a test
   - test test test
   textSpeed: 0.07
+  textSpeedDelay: 0
 --- !u!114 &1147707225
 MonoBehaviour:
   m_ObjectHideFlags: 0
