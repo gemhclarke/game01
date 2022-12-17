@@ -508,11 +508,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 250824117}
   lines:
-  - this is a test, with more text, I am da best
+  - You went there, and it was a bad idea. Your friend and the windmill both dissapeared
+    into thin air.
   - 'and this, is also a test, dad is da best '
   - 'test test test, Gem is also awesome '
-  textSpeed: 0.07
-  textSpeedDelay: 0
+  textSpeed: 0.06
+  delay: 0
+  delayMultiplyer: 3
 --- !u!114 &1147707225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -735,7 +737,7 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: affccc71d38284988b35a680c7763a11, type: 3}
     name: TypingSound
     volume: 0.48
-    pitch: 1.5
+    pitch: 1
     source: {fileID: 0}
 --- !u!4 &1792982839
 Transform:

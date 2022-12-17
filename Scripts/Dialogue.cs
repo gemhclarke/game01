@@ -12,12 +12,12 @@ public class Dialogue : MonoBehaviour
     public float textSpeed;
     
     [HideInInspector]
-    public float textSpeedDelay;
-
+    public float delay;
+    public float delayMultiplyer;
     private int index;
-
     private char spc = ' ';
     private char comma = ',';
+    private char fullStop = '.';
 
     // Start is called before the first frame update
     void Start()
@@ -56,7 +56,7 @@ public class Dialogue : MonoBehaviour
         foreach (char c in lines[index].ToCharArray())
         {
             // We start with a textSpeedDelay of 0 for normal letters
-            textSpeedDelay = 0.0f;
+            delay = 0.0f;
 
             // play a short audio clip here if the c is not a space            
             if (!spc.Equals(c)){
@@ -64,13 +64,13 @@ public class Dialogue : MonoBehaviour
             }
 
             // If the letter is a comma, add a delay
-            if(comma.Equals(c)){
-                textSpeedDelay = textSpeed*10;
+            if(comma.Equals(c) || fullStop.Equals(c) ){
+                delay = textSpeed*delayMultiplyer;
             }
 
             // Appends each char in turn to the textComponent of the dialog box
             textComponent.text += c;
-            yield return new WaitForSeconds(textSpeed+textSpeedDelay);
+            yield return new WaitForSeconds(textSpeed+delay);
         }
     }
 
