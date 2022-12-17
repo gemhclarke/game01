@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 
 public class Dialogue : MonoBehaviour
 {
+    private System.Random random = new System.Random();  
+    private float pitch = 1.0f;
     public TextMeshProUGUI textComponent;
     public string[] lines;
    
@@ -15,6 +18,7 @@ public class Dialogue : MonoBehaviour
     public float delay;
     public float delayMultiplyer;
     private int index;
+    private int carIndex;
     private char spc = ' ';
     private char comma = ',';
     private char fullStop = '.';
@@ -52,15 +56,22 @@ public class Dialogue : MonoBehaviour
 
     IEnumerator TypeLine()
     {
-        // Loop through each line
-        foreach (char c in lines[index].ToCharArray())
+        // Loop through each character
+        char[] charArray = lines[index].ToCharArray();
+        carIndex = 0;
+        foreach (char c in charArray)
         {
+            //pitch = random.Next(1,4);
+            pitch = random.Next(1,3);
+            Debug.Log(pitch);
+            carIndex++;
             // We start with a textSpeedDelay of 0 for normal letters
             delay = 0.0f;
 
             // play a short audio clip here if the c is not a space            
-            if (!spc.Equals(c)){
-                FindObjectOfType<AudioManager>().Play("TypingSound");
+            if (!spc.Equals(c) && (carIndex%2 == 0) ){
+
+                FindObjectOfType<AudioManager>().Play("TypingSound", pitch);
             }
 
             // If the letter is a comma, add a delay
