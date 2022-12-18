@@ -35,7 +35,6 @@ public class Dialogue : MonoBehaviour
     {
       if(Input.GetMouseButtonDown(0) || Input.GetKeyDown("space"))
       {
-        
             if (textComponent.text == lines[index])
             {
                 NextLine();
@@ -56,15 +55,14 @@ public class Dialogue : MonoBehaviour
 
     IEnumerator TypeLine()
     {
-        // Loop through each character
         char[] charArray = lines[index].ToCharArray();
         carIndex = 0;
         foreach (char c in charArray)
         {
-            //pitch = random.Next(1,4);
             pitch = random.Next(1,3);
             Debug.Log(pitch);
             carIndex++;
+            
             // We start with a textSpeedDelay of 0 for normal letters
             delay = 0.0f;
 
