@@ -507,14 +507,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textComponent: {fileID: 250824117}
+  textSpeed: 0.06
+  delayMultiplyer: 3
+  minPitch: 1.7
+  maxPitch: 1.9
   lines:
   - You went there, and it was a bad idea. Your friend and the windmill both dissapeared
     into thin air.
   - 'and this, is also a test, dad is da best '
   - 'test test test, Gem is also awesome '
-  textSpeed: 0.06
-  delay: 0
-  delayMultiplyer: 3
 --- !u!114 &1147707225
 MonoBehaviour:
   m_ObjectHideFlags: 0
