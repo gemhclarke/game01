@@ -7,24 +7,26 @@ public class collision : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-            /*
-            if (other.gameObject.tag == "Patroller")
-            {
-                SceneManager.LoadScene("Game");
-            }
-            */
-
-            switch (other.gameObject.tag) 
-            {
+        switch (other.gameObject.tag) 
+        {
             case "Patroller":
                 Debug.Log("Collided with Patroller");
-                SceneManager.LoadScene("Game");
+                //SceneManager.LoadScene("Game");
                 break;
-            case "Redkey":
+            case "RedKey":
                 Debug.Log("Collided with Redkey");
                 break;
-            }
+        }
+    }
 
+    void OnCollisionStay(Collision other)
+    {
+        switch (other.gameObject.tag) 
+        {
+            case "RedKey":
+                Debug.Log("Adjacent to Redkey");
+                break;
+        }
 
     }
 }
