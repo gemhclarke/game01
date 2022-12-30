@@ -29,7 +29,7 @@ public class RandomMovement : MonoBehaviour //don't forget to change the script 
             {
                 Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
                 agent.SetDestination(point);
-                Debug.Log("Setting point for agent");
+                //Debug.Log("Setting point for agent");
             }
         }
 
@@ -43,7 +43,7 @@ public class RandomMovement : MonoBehaviour //don't forget to change the script 
         { 
             //the 1.0f is the max distance from the random point to a point on the navmesh, might want to increase if range is big
             //or add a for loop like in the documentation
-            Debug.Log("Genrating random point");
+            //Debug.Log("Genrating random point");
             result = hit.position;
             return true;
         }
