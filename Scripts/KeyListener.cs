@@ -10,6 +10,13 @@ public class KeyListener : MonoBehaviour
     {
         //Get a reference to our InvdentoryManager
         inv = Resources.FindObjectsOfTypeAll<InventoryManager>();
+        
+        // Because the Inventory IU is disabled at the start our InventoryManager is not initialized
+        // which causes null pointer exceptions if we try to pick up something before we've looked at out inventory
+        // To work around this we need to enable hen disable the Inventory UI. The enable part instantiates 
+        // the InventoryManager.
+        inv[0].gameObject.SetActive(true);
+        inv[0].gameObject.SetActive(false);
     }
 
     void Update()
