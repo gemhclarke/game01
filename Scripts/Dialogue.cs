@@ -85,7 +85,7 @@ public class Dialogue : MonoBehaviour
         {
             gameObject.SetActive(false);
             // System.Threading.Thread.Sleep(3000);
-            SceneManager.LoadScene("Game");
+            //SceneManager.LoadScene("Game");
         }
     }
 }
