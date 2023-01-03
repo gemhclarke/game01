@@ -2,14 +2,15 @@
 using UnityEngine;
 
 public class DialogTrigger : MonoBehaviour
-{
-    public DialogTriggerProps DialogText;
+{  
+    // We declare our DialogTriggerProps here and then drag the corresponding 
+    // ScriptableObject in the inspector
+    public DialogTriggerProps DialogText; 
     void OnTriggerEnter()
     {
-        print("Triggered");
-        var dialogBox = FindObjectsOfType<Dialogue>(true);
-        print("dialogBox is: " + dialogBox[0]);
-        dialogBox[0].gameObject.SetActive(true);
-        
+        var dialogArray = FindObjectsOfType<Dialogue>(true); // Get a reference to the Dialog object
+        var dialog = dialogArray[0];
+        dialog.gameObject.SetActive(true); // Show the Dialog box on screen
+        dialog.lines = DialogText.lines; // Set the text to that which we've set in our ScriptableObject
     }
 }

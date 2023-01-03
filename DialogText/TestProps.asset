@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd49c5749986947c298689cb6d6daccf, type: 3}
-  m_Name: New Trigger Props
+  m_Name: TestProps
   m_EditorClassIdentifier: 
   name: test
   lines:
   - hello world 1
   - hello world 2
-  - hello world 3
