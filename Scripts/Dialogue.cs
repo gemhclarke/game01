@@ -28,6 +28,7 @@ public class Dialogue : MonoBehaviour
 
     public void StartDialogue()
     {
+        //Time.timeScale = 0;
         index = 0;
         StartCoroutine(TypeLine());         
     }
@@ -82,6 +83,7 @@ public class Dialogue : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
+            //Time.timeScale = 1;
             // System.Threading.Thread.Sleep(3000);
             //SceneManager.LoadScene("Game");
         }
