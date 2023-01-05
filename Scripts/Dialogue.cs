@@ -7,12 +7,12 @@ using System;
 
 public class Dialogue : MonoBehaviour
 {
+    public string[] lines;
     public TextMeshProUGUI textComponent;
     public float textSpeed;
     public float delayMultiplyer;
     public float minPitch = 1.6f;
     public float maxPitch = 2.0f;
-    public string[] lines;
     private float pitch = 1.0f;
     private int index;
     private char spc = ' ';
@@ -20,37 +20,20 @@ public class Dialogue : MonoBehaviour
     private char fullStop = '.';
     private float delay;
 
-    void Start() // Start is called before the first frame update
+    void Start()
     {
         textComponent.text = string.Empty;
         StartDialogue();
     }
 
-    void Update() // Update is called once per frame
+    public void StartDialogue()
     {
-      if(Input.GetMouseButtonDown(0) || Input.GetKeyDown("space")) // Check for space or click
-      {
-            if (textComponent.text == lines[index])
-            {
-                NextLine();
-            }
-            else
-            {
-                StopAllCoroutines();
-                textComponent.text = lines[index];
-            }
-        }
-    }
-
-    void StartDialogue()
-    {
+        //Time.timeScale = 0;
         index = 0;
-        StartCoroutine(TypeLine());
+        StartCoroutine(TypeLine());         
     }
 
-    // This method prints a line of dialogue to the screen
-    // one letter at a time.
-    IEnumerator TypeLine() 
+    IEnumerator TypeLine() //prints a line of dialogue to the screen one letter at a time.
     {
         char[] charArray = lines[index].ToCharArray(); // Get an array of letters for the current line
         foreach (char c in charArray)
@@ -73,6 +56,22 @@ public class Dialogue : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+      if(Input.GetMouseButtonDown(0) || Input.GetKeyDown("space")) // Check for space or click
+      {
+            if (textComponent.text == lines[index])
+            {
+                NextLine();
+            }
+            else
+            {
+                StopAllCoroutines();
+                textComponent.text = lines[index];
+            }
+        }
+    }
+
     void NextLine()
     {
         if (index < lines.Length - 1) 
@@ -84,8 +83,9 @@ public class Dialogue : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
+            //Time.timeScale = 1;
             // System.Threading.Thread.Sleep(3000);
-            SceneManager.LoadScene("Game");
+            //SceneManager.LoadScene("Game");
         }
     }
 }
