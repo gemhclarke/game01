@@ -9,7 +9,7 @@ public class collision : MonoBehaviour
     {
             if (other.gameObject.tag == "Patroller")
             {
-                //SceneManager.LoadScene("Game");
+                SceneManager.LoadScene("Game");
             }
     }
 }
