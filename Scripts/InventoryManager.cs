@@ -31,9 +31,9 @@ public class InventoryManager : MonoBehaviour
         inventorySlots[slot].AddItem(item);
     }
 
-    public void Remove(Item myItem)
+    public void Remove(Item item)
     {
-        Items.Remove(myItem);
+        Items.Remove(item);
     }
 
     private int getFreeInventorySlot()
