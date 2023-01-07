@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class InventoryManager : MonoBehaviour
 {
+    
+    public InventorySoData invSoData;
     public static InventoryManager instance; // Make this a static object (i.e a singleton)
     
     GameObject inventoryUI;
@@ -13,10 +15,16 @@ public class InventoryManager : MonoBehaviour
 
     void Start()
     {
+
         instance = this; // Related to making this a singleton (see above)
         inventoryUI = this.gameObject; // This is a reference to the Inventory UI 
         inventorySlots = inventoryUI.transform.GetComponentsInChildren<InventorySlot>(true);
-        inventorySlotsCount = inventorySlots.Length;
+        inventorySlotsCount = inventorySlots.Length;        
+        foreach (Item i in invSoData.GetItems()){
+            print("Getting item " + i.name + " from persistent store");
+            int slot = getFreeInventorySlot();
+            inventorySlots[slot].AddItem(i);
+        }
     }
 
     public void Add(Item item)
@@ -29,6 +37,9 @@ public class InventoryManager : MonoBehaviour
         int slot = getFreeInventorySlot();
         print("Adding item " + item.name + " to Inventory UI at slot: " + slot);
         inventorySlots[slot].AddItem(item);
+        
+        // Uodate our persistence store
+        invSoData.SetItem(item);
     }
 
     public void Remove(Item item)
