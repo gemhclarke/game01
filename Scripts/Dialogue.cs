@@ -42,7 +42,7 @@ public class Dialogue : MonoBehaviour
             if (!spc.Equals(c)) // Play a short audio clip here if the letter is not a space
             {
                 pitch = UnityEngine.Random.Range(minPitch,maxPitch);
-                FindObjectOfType<AudioManager>().Play("TypingSound", pitch);
+                //FindObjectOfType<AudioManager>().Play("TypingSound", pitch);
             }
 
             if(comma.Equals(c) || fullStop.Equals(c)) // If the letter is a comma or a full stop, add a delay

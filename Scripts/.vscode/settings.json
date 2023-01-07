@@ -1,0 +1,5 @@
+{
+    "omnisharp.autoStart": true,
+    "omnisharp.enableEditorConfigSupport": true,
+    "omnisharp.useModernNet": false
+}

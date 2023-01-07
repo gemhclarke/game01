@@ -36,6 +36,7 @@ public class KeyListener : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 Resources.FindObjectsOfTypeAll<mouseMovement>()[0].gameObject.GetComponent<mouseMovement>().enabled=false; // Disable player mouse control
+                
             }
         }
     }
