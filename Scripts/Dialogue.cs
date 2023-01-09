@@ -24,18 +24,11 @@ public class Dialogue : MonoBehaviour
     {
         textComponent.text = string.Empty;
         StartDialogue();
-        PausePatrollers();
-    }
-
-    private void PausePatrollers()
-    {
-        GameState currentGameState = GameStateManager.Instance.CurrentGameState;
-        GameState newGameState = currentGameState == GameState.GamePlay ? GameState.Paused : GameState.GamePlay;
-        GameStateManager.Instance.SetState(newGameState);  
     }
 
     public void StartDialogue()
     {
+        GameStateManager.Instance.SetState(GameState.Paused); 
         index = 0;
         StartCoroutine(TypeLine());         
     }
@@ -90,8 +83,7 @@ public class Dialogue : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
-            // System.Threading.Thread.Sleep(3000);
-            //SceneManager.LoadScene("Game");
+            GameStateManager.Instance.SetState(GameState.GamePlay); 
         }
     }
 }
