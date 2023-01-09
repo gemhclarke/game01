@@ -1,20 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI; //important
+using UnityEngine.AI;
 
-//if you use this code you are contractually obligated to like the YT video
-public class Patrollerfinal : MonoBehaviour //don't forget to change the script name if you haven't
+public class Patrollerfinal : MonoBehaviour 
 {
     public NavMeshAgent agent;
-    public float range; //radius of sphere
+    public float range;
 
     public Transform centrePoint; //centre of the area the agent wants to move around in
     //instead of centrePoint you can set it as the transform of the agent if you don't care about a specific area
 
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();        
+        agent = GetComponent<NavMeshAgent>();
+        print("Calling Patrollerfinal.cs");   
     }
     
     void Update()

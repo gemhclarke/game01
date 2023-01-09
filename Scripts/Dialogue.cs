@@ -24,6 +24,14 @@ public class Dialogue : MonoBehaviour
     {
         textComponent.text = string.Empty;
         StartDialogue();
+        PausePatrollers();
+    }
+
+    private void PausePatrollers()
+    {
+        GameState currentGameState = GameStateManager.Instance.CurrentGameState;
+        GameState newGameState = currentGameState == GameState.GamePlay ? GameState.Paused : GameState.GamePlay;
+        GameStateManager.Instance.SetState(newGameState);  
     }
 
     public void StartDialogue()

@@ -39,5 +39,11 @@ public class KeyListener : MonoBehaviour
                 
             }
         }
+        // if (Input.GetKeyDown(KeyCode.T))
+        // {
+        //     GameState currentGameState = GameStateManager.Instance.CurrentGameState;
+        //     GameState newGameState = currentGameState == GameState.GamePlay ? GameState.Paused : GameState.GamePlay;
+        //     GameStateManager.Instance.SetState(newGameState);
+        // }
     }
 }
