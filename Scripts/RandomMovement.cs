@@ -19,7 +19,7 @@ public class RandomMovement : MonoBehaviour
 
     void OnDestroy()
     {
-        GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
+        GameStateManager.Instance.OnGameStateChanged -= OnGameStateChanged;
     }
 
     void Start()

@@ -13,6 +13,18 @@ public class playerMovement : MonoBehaviour
     Vector3 velocity;
     bool isGrounded;
 
+
+    void Start()
+    {
+        GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
+    }
+
+
+    void OnDestroy()
+    {
+        GameStateManager.Instance.OnGameStateChanged -= OnGameStateChanged;
+    }
+
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -29,5 +41,18 @@ public class playerMovement : MonoBehaviour
         controller.Move(move * speed * Time.deltaTime);
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        print("GameState changed to " + newGameState + " for " + this);
+        if (newGameState == GameState.Paused)
+        {
+            enabled = false;
+        }
+        else if (newGameState == GameState.GamePlay)
+        {
+            enabled = true;
+        }
     }
 }
