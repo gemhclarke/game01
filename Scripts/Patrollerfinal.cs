@@ -7,28 +7,88 @@ public class Patrollerfinal : MonoBehaviour
 {
     public NavMeshAgent agent;
     public float range;
+    //private playerMovement player;
+    private GameObject player;
 
     public Transform centrePoint; //centre of the area the agent wants to move around in
     //instead of centrePoint you can set it as the transform of the agent if you don't care about a specific area
 
+
+    private bool playerSeen = false;
+    private int toggle = 0;
+
+    private void setToggle()
+    {
+        toggle = 1;
+    }
+
+    private void unsetToggle()
+    {
+        toggle = 0;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player"){
+            playerSeen = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player"){
+            playerSeen = false;
+        }
+    }
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        print("Calling Patrollerfinal.cs");   
+        print("Getting ref to player");
+        player = GameObject.Find("Player");
     }
     
     void Update()
     {
-        if(agent.remainingDistance <= agent.stoppingDistance) //done with path
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
-            Vector3 point;
-            if (RandomPoint(centrePoint.position, range, out point)) //pass in our centre point and radius of area
+            this.playerSeen = true;
+        } else {
+            this.playerSeen = false;
+        }
+
+        if(playerSeen) // If our player has been seen, get the fecker!!
+        {
+            Vector3 currrentPlayerPosition = new Vector3 (player.transform.position.x, player.transform.position.y, player.transform.position.z);         
+            agent.SetDestination(target: currrentPlayerPosition);
+            setToggle();
+
+        } else {
+            // We want to somehow run agent.SetDestination(target: point) JUST ONCE here; 
+            if (toggle == 1)
             {
-                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
-                agent.SetDestination(point);
+                Vector3 point;
+                if (RandomPoint(centrePoint.position, range, out point)) //pass in our centre point and radius of area
+                {
+                    Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
+                    agent.SetDestination(target: point);
+                    
+                }
+                unsetToggle();
             }
+            if(agent.remainingDistance <= agent.stoppingDistance) //done with path
+            {
+                Vector3 point;
+                if (RandomPoint(centrePoint.position, range, out point)) //pass in our centre point and radius of area
+                {
+                    Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
+                    agent.SetDestination(target: point);
+                    
+                }
+            }  
         }
     }
+
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
         Vector3 randomPoint = center + Random.insideUnitSphere * range; //random point in a sphere 
@@ -44,7 +104,5 @@ public class Patrollerfinal : MonoBehaviour
 
         result = randomPoint;
         return true;
-    }
-
-    
+    }   
 }
