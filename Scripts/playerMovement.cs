@@ -10,8 +10,9 @@ public class playerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
-    Vector3 velocity;
+    public Vector3 velocity;
     bool isGrounded;
+    public Vector3 currrentPlayerPosition;
 
 
     void Start()
@@ -38,6 +39,7 @@ public class playerMovement : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
+        currrentPlayerPosition = move;
         controller.Move(move * speed * Time.deltaTime);
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
