@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95e9cc047597d4bed8e550a80d19cc72, type: 3}
   m_Name: InvData
   m_EditorClassIdentifier: 
-  persistedItems: []
+  persistedItems:
+  - {fileID: 11400000, guid: b325904a120894d908ea245cbb4b2660, type: 2}
