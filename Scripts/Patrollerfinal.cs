@@ -7,13 +7,9 @@ public class Patrollerfinal : MonoBehaviour
 {
     public NavMeshAgent agent;
     public float range;
-    //private playerMovement player;
     private GameObject player;
-
-    public Transform centrePoint; //centre of the area the agent wants to move around in
-    //instead of centrePoint you can set it as the transform of the agent if you don't care about a specific area
-
-
+    public Transform centrePoint; 
+    public AudioSource patrollerAudioSource;
     private bool playerSeen = false;
     private int toggle = 0;
 
@@ -27,6 +23,11 @@ public class Patrollerfinal : MonoBehaviour
         toggle = 0;
     }
 
+   
+    // Not sure if we need this section anymore 
+    // I think we were going have a large area for the colliders on the pattrollers 
+    // so they could see thge player within a certain range. Have commented out for now.
+    /*
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player"){
@@ -40,12 +41,18 @@ public class Patrollerfinal : MonoBehaviour
             playerSeen = false;
         }
     }
+    */
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         print("Getting ref to player");
         player = GameObject.Find("Player");
+
+        // Find patroller audio source component
+        patrollerAudioSource = GetComponentInChildren(typeof(AudioSource)) as AudioSource;
+        print(patrollerAudioSource);
+        patrollerAudioSource.enabled = false;
     }
     
     void Update()
@@ -53,8 +60,10 @@ public class Patrollerfinal : MonoBehaviour
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
             this.playerSeen = true;
+            this.patrollerAudioSource.enabled = true; // enable patroller audio when the player moves
         } else {
             this.playerSeen = false;
+            this.patrollerAudioSource.enabled = false; // disable patroller audio when the player moves
         }
 
         if(playerSeen) // If our player has been seen, get the fecker!!

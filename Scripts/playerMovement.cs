@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class playerMovement : MonoBehaviour
 {
@@ -57,4 +58,12 @@ public class playerMovement : MonoBehaviour
             enabled = true;
         }
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+            if (other.gameObject.tag == "Patroller")
+            {
+                SceneManager.LoadScene("Game");
+            }
+    }    
 }
