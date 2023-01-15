@@ -15,14 +15,13 @@ public class playerMovement : MonoBehaviour
     bool isGrounded;
     public Vector3 currrentPlayerPosition;
     private Scene activeScene;
-
+    private bool wasdKeyPressed = false;
 
     void Start()
     {
-        GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
+        GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged; // Register for events from the GameStateManager
         activeScene = SceneManager.GetActiveScene();
     }
-
 
     void OnDestroy()
     {
@@ -46,8 +45,19 @@ public class playerMovement : MonoBehaviour
         controller.Move(move * speed * Time.deltaTime);
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        // This section is a bit of a temporary hack to disable scene reload when we're not
+        // moving and a Patroller collides with us
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        {
+            wasdKeyPressed = true;
+        } else {
+            wasdKeyPressed = false;
+        }
     }
 
+    // We're subscribing to the GameStateManager events here so that we can pause the player 
+    // When we reach a dialog box (the same is true for the Patrollers)
     private void OnGameStateChanged(GameState newGameState)
     {
         print("GameState changed to " + newGameState + " for " + this);
@@ -63,10 +73,11 @@ public class playerMovement : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-            if (other.gameObject.tag == "Patroller")
-            {
-                SceneManager.LoadScene(activeScene.name);
-                //SceneManager.LoadScene("Game");
-            }
+        if (other.gameObject.tag == "Patroller" && activeScene.name=="Game")
+        {
+            SceneManager.LoadScene(activeScene.name);
+        } else if (other.gameObject.tag == "Patroller" && activeScene.name=="Level2" && wasdKeyPressed){
+            SceneManager.LoadScene(activeScene.name);
+        }
     }    
 }
