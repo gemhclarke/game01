@@ -43,6 +43,9 @@ public class Patrollerfinal : MonoBehaviour
     }
     */
 
+    private GameObject attack;
+    private GameObject idle;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -53,6 +56,12 @@ public class Patrollerfinal : MonoBehaviour
         patrollerAudioSource = GetComponentInChildren(typeof(AudioSource)) as AudioSource;
         print(patrollerAudioSource);
         patrollerAudioSource.enabled = false;
+        attack = GameObject.Find("attack");
+        idle = GameObject.Find("idle");
+        print("s1 is: " + attack);
+        print("s2 is: " + idle);    
+        attack.SetActive(false); 
+        idle.SetActive(true); 
     }
     
     void Update()
@@ -61,9 +70,14 @@ public class Patrollerfinal : MonoBehaviour
         {
             this.playerSeen = true;
             this.patrollerAudioSource.enabled = true; // enable patroller audio when the player moves
+            attack.SetActive(true);
+            idle.SetActive(false);
         } else {
             this.playerSeen = false;
             this.patrollerAudioSource.enabled = false; // disable patroller audio when the player moves
+            idle.SetActive(true);
+            attack.SetActive(false);
+            
         }
 
         if(playerSeen) // If our player has been seen, get the fecker!!

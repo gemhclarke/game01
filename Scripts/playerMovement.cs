@@ -71,7 +71,7 @@ public class playerMovement : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Patroller" && activeScene.name=="Game")
         {
