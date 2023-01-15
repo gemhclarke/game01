@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   persistedItems:
   - {fileID: 11400000, guid: b325904a120894d908ea245cbb4b2660, type: 2}
+  - {fileID: 11400000, guid: b325904a120894d908ea245cbb4b2660, type: 2}
