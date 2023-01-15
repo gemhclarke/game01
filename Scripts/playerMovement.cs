@@ -14,11 +14,13 @@ public class playerMovement : MonoBehaviour
     public Vector3 velocity;
     bool isGrounded;
     public Vector3 currrentPlayerPosition;
+    private Scene activeScene;
 
 
     void Start()
     {
         GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
+        activeScene = SceneManager.GetActiveScene();
     }
 
 
@@ -63,7 +65,8 @@ public class playerMovement : MonoBehaviour
     {
             if (other.gameObject.tag == "Patroller")
             {
-                SceneManager.LoadScene("Game");
+                SceneManager.LoadScene(activeScene.name);
+                //SceneManager.LoadScene("Game");
             }
     }    
 }
