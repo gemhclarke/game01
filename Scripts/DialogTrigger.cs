@@ -3,11 +3,15 @@ using UnityEngine;
 
 public class DialogTrigger : MonoBehaviour
 {  
+    //public Component TriggerCollider;
+
     // We declare our DialogTriggerProps here and then drag the corresponding 
     // ScriptableObject in the inspector
     public DialogTriggerProps dialogTriggerProps; 
     void OnTriggerEnter()
     {
+        GetComponent<BoxCollider>().enabled=false;
+
         var dialogArray = FindObjectsOfType<Dialogue>(true); // Get a reference to the Dialog object
         Dialogue dialog = dialogArray[0];
         

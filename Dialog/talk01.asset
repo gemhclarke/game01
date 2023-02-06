@@ -14,5 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: talk01
   lines:
-  - heyyyy there, how u doing this fine evening?
-  - I'm good! thanks for asking
+  - hey there!
+  - How are you doing this fine evening?
+  - I'm good thanks for asking.
+  - ...
+  - hmm, you seem lost. perhaps you should start looking around for something to
+    do.
+  - Don't worry, your not alone here. My friends will keep you company.
+  - Just don't get in their way.
+  - Good luck.
